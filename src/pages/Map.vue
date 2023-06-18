@@ -1,18 +1,14 @@
 <template lang="pug">
+<Map />
 </template>
 
 <script>
+import Map from '../components/Map.vue'
+
 export default {
   name: 'MapPage',
   components: {
-  },
-  data: () => ({
-  }),
-  props: {
-  },
-  computed: {
-  },
-  methods: {
+    Map
   }
 }
 </script>

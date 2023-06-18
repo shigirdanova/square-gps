@@ -1,37 +1,31 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="blue-grey darken-2"
-      dark
-    >
-      <v-toolbar-title>Тестовое задание для SquareGPS</v-toolbar-title>
+  <v-app-bar
+    app
+    color="blue-grey darken-2"
+    dark
+  >
+    <v-toolbar-title>Тестовое задание для SquareGPS</v-toolbar-title>
 
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-      <template v-slot:extension>
-        <v-tabs
-          v-model="tab"
-          align-with-title
-          @change="updateRouter($event)"
+    <template v-slot:extension>
+      <v-tabs
+        v-model="tab"
+        align-with-title
+        @change="updateRouter($event)"
+      >
+        <v-tabs-slider></v-tabs-slider>
+
+        <v-tab
+          v-for="item in tabItems"
+          :key="item.name"
+          :to="item.path"
         >
-          <v-tabs-slider></v-tabs-slider>
-
-          <v-tab
-            v-for="item in tabItems"
-            :key="item.name"
-            :to="item.path"
-          >
-            {{ item.name || 'jkhsdf'}}
-          </v-tab>
-        </v-tabs>
-      </template>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+          {{ item.name || 'jkhsdf'}}
+        </v-tab>
+      </v-tabs>
+    </template>
+  </v-app-bar>
 </template>
 
 <script>
