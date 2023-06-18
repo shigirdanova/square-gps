@@ -1,17 +1,21 @@
 <template lang="pug">
-#app
-  DefaultLayout
 </template>
 
 <script>
-import DefaultLayout from './layouts/default'
-
 export default {
+  name: 'MapPage',
   components: {
-    DefaultLayout
   },
   data: () => ({
-    //
-  })
+  }),
+  props: {
+  },
+  computed: {
+  },
+  methods: {
+  }
 }
 </script>
+
+<style lang="styles">
+</style>
