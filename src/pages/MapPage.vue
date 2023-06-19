@@ -1,14 +1,10 @@
 <template>
   <div class="page">
-    <!-- <v-btn
-        elevation="2"
-        icon
-        x-large
-        class="addButton"
-        @click="addMarker"
-      >
-        <v-icon>mdi-plus</v-icon>
-    </v-btn> -->
+    <MarkersList
+      class="markersList"
+      :markers="map.markers"
+      :selected-marker="map.selectedMarker"
+    />
     <GoogleMap
       class="map"
       :markers="map.markers"
@@ -18,12 +14,14 @@
 
 <script>
 import GoogleMap from '../components/GoogleMap.vue'
+import MarkersList from '../components/MarkersList.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'MapPage',
   components: {
-    GoogleMap
+    GoogleMap,
+    MarkersList
   },
   computed: {
     ...mapState({
@@ -40,18 +38,17 @@ export default {
 
 <style scope>
 .page {
+  display: flex;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 112px);
+}
+
+.markersList {
+  width: 400px;
+  height: calc(100vh - 112px);
 }
 
 .map {
   width: 100%;
-  height: 100%;
-}
-
-.addButton {
-  /* position: fixed;
-  right: 0;
-  bottom: 0; */
 }
 </style>

@@ -5,6 +5,10 @@ Vue.use(VueRouter)
 
 export const routes = [
   {
+    path: '*',
+    redirect: '/map'
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/pages/AboutPage'),
@@ -15,6 +19,12 @@ export const routes = [
     name: 'map',
     component: () => import('@/pages/MapPage'),
     props: true
+  },
+  {
+    path: '/map/:id',
+    name: 'location',
+    component: () => import('@/pages/MapPage'),
+    props: (route) => ({ selectedMarkerId: Number(route.params.id) })
   }
 ]
 

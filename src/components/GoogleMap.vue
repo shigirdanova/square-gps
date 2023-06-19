@@ -1,5 +1,16 @@
 <template>
   <div>
+    <v-btn
+        elevation="2"
+        x-large
+        icon
+        class="addButton"
+        @click="onAddButtonClick"
+        :disabled="isAddMarker"
+      >
+        <v-icon>mdi-plus</v-icon>
+    </v-btn>
+
     <GmapMap
       ref="map"
       v-bind="options"
@@ -20,7 +31,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import nanoId from 'nanoid'
+import nanoid from 'nanoid'
 
 export default {
   name: 'GoogleMap',
@@ -34,7 +45,8 @@ export default {
     options: {
       center: { lat: 45.101637, lng: 38.986345 },
       zoom: 12
-    }
+    },
+    isAddMarker: false
   }),
   mounted () {
     this.geolocate()
@@ -46,7 +58,6 @@ export default {
     ...mapActions('map', {
       createMarker: 'createMarker'
     }),
-
     setPlace (place) {
       this.currentPlace = place
     },
@@ -59,13 +70,19 @@ export default {
       })
     },
     onMapClick (e) {
-      this.createMarker({
-        id: nanoId,
-        position: e.latLng
-      })
+      if (this.isAddMarker) {
+        this.createMarker({
+          id: nanoid,
+          position: e.latLng
+        })
+        this.isAddMarker = false
+      }
     },
     onMarkerClick (e) {
       this.$refs.map.panTo(e.latLng)
+    },
+    onAddButtonClick () {
+      this.isAddMarker = true
     }
   }
 
@@ -77,4 +94,12 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+.addButton {
+    position: fixed;
+    right: 6px;
+    bottom: 200px;
+    z-index: 9;
+    background-color: white;
+  }
 </style>

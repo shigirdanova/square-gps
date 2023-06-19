@@ -14,9 +14,6 @@ export default {
   name: 'App',
   components: {
     LayoutHeader
-  },
-  data: () => ({
-    //
-  })
+  }
 }
 </script>

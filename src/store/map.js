@@ -1,4 +1,5 @@
 import { LocalStorage } from '@/api/local-storage-service'
+import router from '../router'
 
 const mapModule = {
   namespaced: true,
@@ -15,11 +16,7 @@ const mapModule = {
       state.markers.push(marker)
     },
 
-    DELETE_MARKER (state, index) {
-      state.markers.splice(index, 1)
-    },
-
-    SET_SELECTED_MARKER (state, index) {
+    SET_selectedMarker (state, index) {
       state.selectedMarker = {
         id: index,
         ...state.markers[index]
@@ -27,15 +24,15 @@ const mapModule = {
     }
   },
   actions: {
-    fetchMarkers ({ commit, state }, initialId = null) {
+    fetchMarkers ({ commit, state }, markerId = null) {
       const markers = LocalStorage.fetchMarkers()
 
       commit('SET_SAVED_MARKERS', markers)
 
-      const initialMarkerId = initialId - 1
+      const selectedMarkerId = markerId - 1
 
-      if (initialId && state.markers[initialMarkerId]) {
-        commit('SET_SELECTED_MARKER', initialMarkerId)
+      if (markerId && state.markers[selectedMarkerId]) {
+        commit('SET_selectedMarker', selectedMarkerId)
       }
     },
 
@@ -49,12 +46,9 @@ const mapModule = {
     },
 
     selectMarker ({ commit }, id) {
-      commit('SET_SELECTED_MARKER', id)
-    },
+      commit('SET_selectedMarker', id)
 
-    deleteMarker ({ commit }, index) {
-      LocalStorage.deleteMarker(index)
-      commit('DELETE_MARKER', index)
+      router.push({ name: 'location', params: { id: id + 1 } })
     }
   }
 }
