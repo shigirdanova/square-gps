@@ -1,6 +1,5 @@
-<template lang="pug">
-#app
-  DefaultLayout
+<template>
+  <DefaultLayout />
 </template>
 
 <script>

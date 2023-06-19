@@ -1,18 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import main from './main';
-import map from './map'
-
-// import createPersistedState from 'vuex-persistedstate';
+import mapModule from './map'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
-    map
-  },
-  plugins: [
-    // createPersistedState(),
-  ]
+    map: mapModule
+  }
 })
+
+export default store

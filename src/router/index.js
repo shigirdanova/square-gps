@@ -7,13 +7,13 @@ export const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('@/pages/About'),
+    component: () => import('@/pages/AboutPage'),
     props: true
   },
   {
     path: '/map',
     name: 'map',
-    component: () => import('@/pages/Map'),
+    component: () => import('@/pages/MapPage'),
     props: true
   }
 ]
