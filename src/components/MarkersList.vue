@@ -1,7 +1,7 @@
 <template>
   <div>
       <v-card class="markers-list">
-        <v-card-title>Маркеры:</v-card-title>
+        <v-card-title>{{ this.$t('markers_title') }}</v-card-title>
 
         <div v-if="markers.length">
           <v-card

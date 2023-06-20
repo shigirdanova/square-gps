@@ -5,7 +5,7 @@
     dark
   >
     <div class="header">
-      <v-toolbar-title>Тестовое задание для SquareGPS</v-toolbar-title>
+      <v-toolbar-title>{{ this.$t('app_title') }}</v-toolbar-title>
       <LocaleDropdown />
     </div>
 
@@ -45,11 +45,12 @@ export default {
   computed: {
     tabItems () {
       return [
-        { id: 'about', name: 'О задании', path: this.getTabPath('about') },
-        { id: 'map', name: 'Карта', path: this.getTabPath('map') }
+        { id: 'about', name: this.$t('menu.map'), path: this.getTabPath('about') },
+        { id: 'map', name: this.$t('menu.about'), path: this.getTabPath('map') }
       ]
     }
   },
+
   methods: {
     getTabPath (name) {
       // Get the path withoust losing params. Usefull e.g. if you have a :locale in your url:
@@ -65,6 +66,7 @@ export default {
 <style scoped>
 .header {
   display: flex;
-  align-items: space-between;
+  width: 100%;
+  justify-content: space-between;
 }
 </style>

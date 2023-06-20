@@ -1,12 +1,8 @@
 export const en = {
-  app_title: 'SquareGPS',
+  app_title: 'Test SquareGPS',
   menu: {
     about: 'About',
     map: 'Map page'
   },
-  pages: {
-    map: {
-      markers: 'Markers'
-    }
-  }
+  markers_title: 'Markers'
 }

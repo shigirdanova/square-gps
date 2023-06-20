@@ -90,17 +90,16 @@ export default {
         }
       })
     },
-    onMapClick (e) {
+    onMapClick (location) {
       if (this.isAddMarker) {
-        this.createMarker({
-          position: e.latLng
-        })
+        const { lat, lng } = location.latLng
+
+        this.createMarker({ lat: lat(), lng: lng() })
         this.isAddMarker = false
       }
     },
     onMarkerClick (e) {
       this.$refs.map.panTo(e.latLng)
-      console.log(e)
       this.selectMarker(e.index)
     },
     goToMap (index) {
