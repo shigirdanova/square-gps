@@ -18,12 +18,12 @@
       class="map"
     >
       <GmapMarker
-        v-for="m in markers"
+        v-for="m, index in markers"
         :key="m.id"
         :position="m.position"
         :clickable="true"
         :draggable="true"
-        @click="onMarkerClick"
+        @click="onMarkerClick($event, index)"
       />
     </GmapMap>
   </div>
@@ -90,21 +90,25 @@ export default {
         }
       })
     },
-    onMapClick (location) {
+    onMapClick (e) {
       if (this.isAddMarker) {
-        const { lat, lng } = location.latLng
+        const { latLng } = e
+        const coords = { lat: latLng.lat(), lng: latLng.lng() }
 
-        this.createMarker({ lat: lat(), lng: lng() })
+        this.createMarker(coords)
         this.isAddMarker = false
       }
-    },
-    onMarkerClick (e) {
-      this.$refs.map.panTo(e.latLng)
-      this.selectMarker(e.index)
     },
     goToMap (index) {
       const markerLonLat = this.markers[index].position
       this.$refs.map.panTo(markerLonLat)
+    },
+    onMarkerClick (e, index) {
+      console.log(e)
+      console.log(index)
+
+      this.goToMap(index)
+      this.selectMarker(index)
     },
     onAddButtonClick () {
       this.isAddMarker = true

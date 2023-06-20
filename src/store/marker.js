@@ -38,7 +38,7 @@ const markerModule = {
 
     async createMarker ({ commit, state }, marker) {
       try {
-        commit('SAVE_MARKER', marker)
+        commit('SAVE_MARKER', { position: marker })
         Backend.saveMarkers(state.markers)
       } catch (e) {
         throw Error(e)
