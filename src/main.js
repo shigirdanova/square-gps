@@ -4,18 +4,28 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import i18n from './plugins/vue-i18n'
+import VueI18n from 'vue-i18n'
+import { locales } from '@/locales'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 
-Vue.config.productionTip = false
+const YOUR_GOOGLE_MAPS_KEY = ''
+
+Vue.use(VueI18n)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: process.env.GOOGLE_MAPS_KEY,
+    key: YOUR_GOOGLE_MAPS_KEY,
     libraries: 'places'
   }
 })
+
+const i18n = new VueI18n({
+  locale: 'ru',
+  messages: locales
+})
+
+Vue.config.productionTip = false
 
 new Vue({
   vuetify,

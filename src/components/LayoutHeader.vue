@@ -4,7 +4,10 @@
     color="blue-grey darken-2"
     dark
   >
-    <v-toolbar-title>Тестовое задание для SquareGPS</v-toolbar-title>
+    <div class="header">
+      <v-toolbar-title>Тестовое задание для SquareGPS</v-toolbar-title>
+      <LocaleDropdown />
+    </div>
 
     <v-spacer></v-spacer>
 
@@ -29,9 +32,13 @@
 </template>
 
 <script>
+import LocaleDropdown from '@/components/LocaleDropdown.vue'
 
 export default {
   name: 'App',
+  components: {
+    LocaleDropdown
+  },
   data: () => ({
     tab: ''
   }),
@@ -54,3 +61,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.header {
+  display: flex;
+  align-items: space-between;
+}
+</style>

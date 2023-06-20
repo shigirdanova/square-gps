@@ -43,12 +43,18 @@ export default {
   data: () => ({
     options: {
       center: { },
-      zoom: 12
+      zoom: 15
     },
     isAddMarker: false
   }),
   mounted () {
+    console.log(this)
     this.geolocate()
+  },
+  watch: {
+    $route (to, from) {
+      this.goToMap(to.params.id - 1)
+    }
   },
   computed: {
     ...mapState({
@@ -94,7 +100,12 @@ export default {
     },
     onMarkerClick (e) {
       this.$refs.map.panTo(e.latLng)
+      console.log(e)
       this.selectMarker(e.index)
+    },
+    goToMap (index) {
+      const markerLonLat = this.markers[index].position
+      this.$refs.map.panTo(markerLonLat)
     },
     onAddButtonClick () {
       this.isAddMarker = true

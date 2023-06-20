@@ -1,14 +1,11 @@
 <template>
   <v-menu top>
-    <v-slot :activator="{ on, attrs }"/>
       <v-btn
             color="white"
-            v-bind="attrs"
             v-on="on"
             icon
             small
-      >
-        <v-icon(dark) mdi-web />
+      ><v-icon(dark) mdi-web />
       </v-btn>
 
     <v-list>
