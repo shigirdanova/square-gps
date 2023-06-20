@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import mapModule from './map'
+import markerModule from './marker'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    map: mapModule
+    map: markerModule
   }
 })
 

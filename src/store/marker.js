@@ -1,7 +1,7 @@
-import { LocalStorage } from '@/api/local-storage-service'
+import { Backend } from '@/plugins/api-services/storage-service'
 import router from '../router'
 
-const mapModule = {
+const markerModule = {
   namespaced: true,
   state: {
     markers: [],
@@ -16,7 +16,7 @@ const mapModule = {
       state.markers.push(marker)
     },
 
-    SET_selectedMarker (state, index) {
+    SET_SELECTED_MARKER (state, index) {
       state.selectedMarker = {
         id: index,
         ...state.markers[index]
@@ -25,32 +25,32 @@ const mapModule = {
   },
   actions: {
     fetchMarkers ({ commit, state }, markerId = null) {
-      const markers = LocalStorage.fetchMarkers()
+      const markers = Backend.fetchMarkers()
 
       commit('SET_SAVED_MARKERS', markers)
 
       const selectedMarkerId = markerId - 1
 
       if (markerId && state.markers[selectedMarkerId]) {
-        commit('SET_selectedMarker', selectedMarkerId)
+        commit('SET_SELECTED_MARKER', selectedMarkerId)
       }
     },
 
     async createMarker ({ commit, state }, marker) {
       try {
         commit('SAVE_MARKER', marker)
-        LocalStorage.saveMarkers(state.markers)
+        Backend.saveMarkers(state.markers)
       } catch (e) {
         throw Error(e)
       }
     },
 
     selectMarker ({ commit }, id) {
-      commit('SET_selectedMarker', id)
+      commit('SET_SELECTED_MARKER', id)
 
       router.push({ name: 'location', params: { id: id + 1 } })
     }
   }
 }
 
-export default mapModule
+export default markerModule

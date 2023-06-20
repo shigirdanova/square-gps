@@ -1,4 +1,4 @@
-export const LocalStorage = {
+export const Backend = {
   fetchMarkers,
   saveMarkers
 }

@@ -8,18 +8,22 @@
             v-for="(marker, index) in markers"
             :key="index+1"
             :class="{'selected': selectedMarker && index === selectedMarker.id}"
-            @click="handleSelectMarker(index)"
+            @click="onSelectMarker(marker, index)"
             tile
             class="markerItem"
             >
             <p class="font-weight-medium">Маркер №{{ index+1 }}</p>
-            <p class="grey--text mb-2">{{ marker.position.lat }}, {{ marker.position.lng }}</p>
+            <p class="grey--text mb-2">
+              {{ Number(marker.position.lat).toFixed(6) }}, {{ Number(marker.position.lng).toFixed(6) }}
+            </p>
           </v-card>
         </div>
 
         <div v-else class="emptyList">
           <p class="text--secondary">Нет маркеров</p>
-          <p class="grey--text text-darken-1 mb-2">Для создания нового маркера нажмите на кнопку "+" в правом нижнем углу</p>
+          <p class="grey--text text-darken-1 mb-2">
+            Для создания нового маркера нажмите на кнопку "+" в правом нижнем углу
+          </p>
         </div>
       </v-card>
   </div>
@@ -50,9 +54,8 @@ export default {
       selectMarker: 'selectMarker'
     }),
 
-    handleSelectMarker (marker, id) {
+    onSelectMarker (marker, id) {
       this.selectMarker(id)
-      this.$refs.map.panTo(marker)
     }
   }
 }

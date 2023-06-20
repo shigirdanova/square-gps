@@ -3,11 +3,11 @@
     <MarkersList
       class="markersList"
       :markers="map.markers"
-      :selected-marker="map.selectedMarker"
     />
     <GoogleMap
       class="map"
       :markers="map.markers"
+      :selected-marker="map.selectedMarker"
     />
   </div>
 </template>

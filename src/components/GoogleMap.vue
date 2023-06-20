@@ -31,7 +31,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import nanoid from 'nanoid'
 
 export default {
   name: 'GoogleMap',
@@ -43,7 +42,7 @@ export default {
   },
   data: () => ({
     options: {
-      center: { lat: 45.101637, lng: 38.986345 },
+      center: { },
       zoom: 12
     },
     isAddMarker: false
@@ -52,11 +51,27 @@ export default {
     this.geolocate()
   },
   computed: {
-    ...mapState(['map'])
+    ...mapState({
+      selected_marker: (state) => state.map.selected_marker
+    }),
+    info_window_options () {
+      const content = this.selected_marker
+        ? `
+                <b>ID:${this.selected_marker.id + 1}</b><br/>
+                Lat: ${(Number(this.selected_marker.lat)).toFixed(6)}<br/>
+                Lng: ${(Number(this.selected_marker.lng)).toFixed(6)}`
+        : ''
+      return {
+        content,
+        maxWidth: 200
+      }
+    }
+
   },
   methods: {
     ...mapActions('map', {
-      createMarker: 'createMarker'
+      createMarker: 'createMarker',
+      selectMarker: 'selectMarker'
     }),
     setPlace (place) {
       this.currentPlace = place
@@ -72,7 +87,6 @@ export default {
     onMapClick (e) {
       if (this.isAddMarker) {
         this.createMarker({
-          id: nanoid,
           position: e.latLng
         })
         this.isAddMarker = false
@@ -80,13 +94,14 @@ export default {
     },
     onMarkerClick (e) {
       this.$refs.map.panTo(e.latLng)
+      this.selectMarker(e.index)
     },
     onAddButtonClick () {
       this.isAddMarker = true
     }
   }
-
 }
+
 </script>
 
 <style scoped>
