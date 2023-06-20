@@ -11,7 +11,7 @@
 import LayoutHeader from '../components/LayoutHeader.vue'
 
 export default {
-  name: 'App',
+  name: 'DefaultLayout',
   components: {
     LayoutHeader
   }

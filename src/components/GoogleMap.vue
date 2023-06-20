@@ -48,7 +48,6 @@ export default {
     isAddMarker: false
   }),
   mounted () {
-    console.log(this)
     this.geolocate()
   },
   watch: {
@@ -104,9 +103,6 @@ export default {
       this.$refs.map.panTo(markerLonLat)
     },
     onMarkerClick (e, index) {
-      console.log(e)
-      console.log(index)
-
       this.goToMap(index)
       this.selectMarker(index)
     },

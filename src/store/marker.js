@@ -48,7 +48,9 @@ const markerModule = {
     selectMarker ({ commit }, id) {
       commit('SET_SELECTED_MARKER', id)
 
-      router.push({ name: 'location', params: { id: id + 1 } })
+      if (router.currentRoute.params.id !== id + 1) {
+        router.push({ name: 'location', params: { id: id + 1 } })
+      }
     }
   }
 }
