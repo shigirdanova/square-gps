@@ -13,7 +13,7 @@ Vue.use(VueI18n)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: process.env.YOUR_GOOGLE_MAPS_KEY,
+    key: 'AIzaSyAuEayUOKXsU2yt3ZsPiqjeBq9Lou9SqZY',
     libraries: 'places'
   }
 })
