@@ -3,14 +3,11 @@
 </template>
 
 <script>
-import DefaultLayout from './layouts/Default'
+import DefaultLayout from './layouts/default'
 
 export default {
   components: {
     DefaultLayout
-  },
-  data: () => ({
-    //
-  })
+  }
 }
 </script>

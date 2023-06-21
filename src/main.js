@@ -9,13 +9,11 @@ import { locales } from '@/locales'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 
-const YOUR_GOOGLE_MAPS_KEY = 'AIzaSyAuEayUOKXsU2yt3ZsPiqjeBq9Lou9SqZY'
-
 Vue.use(VueI18n)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: YOUR_GOOGLE_MAPS_KEY,
+    key: process.env.YOUR_GOOGLE_MAPS_KEY,
     libraries: 'places'
   }
 })
